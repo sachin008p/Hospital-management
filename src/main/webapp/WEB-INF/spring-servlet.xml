@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Package Scan -->
+    <context:component-scan base-package="hospital"/>
+
+    <!-- MVC Config -->
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
+
+    <!-- Transaction Annotation -->
+    <tx:annotation-driven/>
+
+    <!-- View Resolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- PostgreSQL DataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/hospital_management"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="5432"/>
+    </bean>
+
+    <!-- SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <!-- Entities -->
+       <property name="annotatedClasses">
+    <list>
+        <value>hospital.entity.Specialist</value>
+        <value>hospital.entity.Doctor</value>
+        <value>hospital.entity.User</value> 
+        <value>hospital.entity.Appointment</value> 
+          
+    </list>
+</property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ✅ FIX: HibernateTemplate bean -->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
+
+
