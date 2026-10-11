@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false"%>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top hm-topnav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<div class="container-fluid">
-		<a class="navbar-brand d-flex align-items-center gap-2"
+		<a class="navbar-brand"
 			href="${pageContext.request.contextPath}/doctor/index"> <i
-			class="fas fa-clinic-medical"></i> HealthCare Doctor
+			class="fas fa-clinic-medical"></i> HEALTH CARE
 		</a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -18,11 +18,11 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/doctor/index"><i class="fa-solid fa-chart-line me-1"></i> Dashboard </a></li>
+					href="${pageContext.request.contextPath}/doctor/index"> HOME </a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/doctor/patient">
-						<i class="fa-solid fa-calendar-check me-1"></i> Appointments </a></li>
+						PATIENT </a></li>
 
 			</ul>
 
@@ -40,11 +40,11 @@
 						<li><a class="dropdown-item"
 							href="${pageContext.request.contextPath}/doctor/editProfile">
 
-								<i class="fa-solid fa-user-pen me-2"></i>Edit Profile </a></li>
+								Edit Profile </a></li>
 
 						<li><a class="dropdown-item"
 							href="${pageContext.request.contextPath}/doctor/logout">
-								<i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout </a></li>
+								Logout </a></li>
 
 					</ul>
 				</div>

@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hospital.dao.AppointmentDao;
-import hospital.dao.DoctorDao;
-import hospital.entity.Appointment;
-import hospital.entity.Doctor;
+import hospital.repository.AppointmentDao;
+import hospital.repository.DoctorDao;
+import hospital.model.Appointment;
+import hospital.model.Doctor;
 
 @Service
 @Transactional
@@ -25,6 +25,14 @@ public class AppointmentService {
 	private DoctorService doctorService;
 	
 	public boolean addAppointment(Appointment ap) {
+		if (ap == null || ap.getDoctorId() <= 0 || ap.getUserId() <= 0
+				|| ap.getAppointDate() == null || ap.getAppointDate().trim().isEmpty()) {
+			return false;
+		}
+		if (doctorDao.getDoctorById(ap.getDoctorId()) == null
+				|| appointmentDao.existsForDoctorOnDate(ap.getDoctorId(), ap.getAppointDate())) {
+			return false;
+		}
 		return appointmentDao.addAppointment(ap);
 		
 	}
@@ -71,7 +79,8 @@ public class AppointmentService {
 	}
 
 	public boolean updateCommentStatus(int id, int doctorId, String comment) {
-	    return appointmentDao.updateCommentStatus(id, doctorId, comment);
+	    return comment != null && !comment.trim().isEmpty()
+				&& appointmentDao.updateCommentStatus(id, doctorId, comment.trim());
 	}
 		
 	

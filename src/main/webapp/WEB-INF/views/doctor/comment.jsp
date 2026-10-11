@@ -3,65 +3,88 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Patient Comment</title>
-<%@ include file="../component/allcss.jsp"%>
+
+<%@ include file="../common/allcss.jsp"%>
 </head>
-<body>
+<body class="bg-light">
+	<!-- SESSION CHECK -->
 	<c:if test="${empty sessionScope.doctorObj}">
 		<c:redirect url="/doctor/login" />
 	</c:if>
+	<!-- NAVBAR -->
 	<%@ include file="navbar.jsp"%>
-
-	<main class="hm-page">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-9">
-					<div class="hm-card hm-fade-in">
-						<div class="card-body p-lg-4">
-							<h1 class="hm-section-title"><i class="fas fa-comment-medical text-primary me-2"></i>Patient Comment</h1>
-							<p class="hm-section-subtitle">Add consultation notes and close the appointment status.</p>
-
-							<c:if test="${not empty sucMsg}">
-								<div class="alert alert-success hm-alert">${sucMsg}</div>
-								<c:remove var="sucMsg" scope="session" />
-							</c:if>
-							<c:if test="${not empty errorMsg}">
-								<div class="alert alert-danger hm-alert">${errorMsg}</div>
-								<c:remove var="errorMsg" scope="session" />
-							</c:if>
-
-							<form action="${pageContext.request.contextPath}/doctor/updateStatus" method="post" class="row g-3">
-								<div class="col-md-6 form-floating">
-									<input type="text" class="form-control" id="patientName" value="${appointment.fullname}" placeholder="Patient Name" readonly>
-									<label for="patientName">Patient Name</label>
+	<div class="container p-5">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="card shadow">
+					<div class="card-header bg-primary text-white text-center">
+						<h3>
+							<i class="fas fa-comment-medical"></i> Patient Comment
+						</h3>
+					</div>
+					<div class="card-body">
+						<!-- SUCCESS MESSAGE -->
+						<c:if test="${not empty sucMsg}">
+							<div class="alert alert-success text-center">${sucMsg}</div>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
+						<!-- ERROR MESSAGE -->
+						<c:if test="${not empty errorMsg}">
+							<div class="alert alert-danger text-center">${errorMsg}</div>
+							<c:remove var="errorMsg" scope="session" />
+						</c:if>
+						<form
+							action="${pageContext.request.contextPath}/doctor/updateStatus"
+							method="post">
+							<div class="row">
+								<!-- PATIENT NAME -->
+								<div class="col-md-6 mb-3">
+									<label class="form-label fw-bold"> Patient Name </label> <input
+										type="text" class="form-control"
+										value="${appointment.fullname}" readonly>
 								</div>
-								<div class="col-md-6 form-floating">
-									<input type="text" class="form-control" id="age" value="${appointment.age}" placeholder="Age" readonly>
-									<label for="age">Age</label>
+								<!-- AGE -->
+								<div class="col-md-6 mb-3">
+									<label class="form-label fw-bold"> Age </label> <input
+										type="text" class="form-control" value="${appointment.age}"
+										readonly>
 								</div>
-								<div class="col-md-6 form-floating">
-									<input type="text" class="form-control" id="mobile" value="${appointment.phno}" placeholder="Mobile No" readonly>
-									<label for="mobile">Mobile No</label>
+								<!-- MOBILE -->
+								<div class="col-md-6 mb-3">
+									<label class="form-label fw-bold"> Mobile No </label> <input
+										type="text" class="form-control" value="${appointment.phno}"
+										readonly>
 								</div>
-								<div class="col-md-6 form-floating">
-									<input type="text" class="form-control" id="diseases" value="${appointment.diseases}" placeholder="Diseases" readonly>
-									<label for="diseases">Diseases</label>
+								<!-- DISEASE -->
+								<div class="col-md-6 mb-3">
+									<label class="form-label fw-bold"> Diseases </label> <input
+										type="text" class="form-control"
+										value="${appointment.diseases}" readonly>
 								</div>
-								<div class="col-md-12 form-floating">
-									<textarea rows="4" name="comm" class="form-control" id="comment" placeholder="Comment" style="height: 130px" required></textarea>
-									<label for="comment">Comment</label>
+								<!-- COMMENT -->
+								<div class="col-md-12 mb-3">
+									<label class="form-label fw-bold"> Comment </label>
+									<textarea rows="4" name="comm" class="form-control" required></textarea>
 								</div>
+								<!-- HIDDEN ID -->
 								<input type="hidden" name="id" value="${appointment.id}">
-								<div class="col-md-12">
-									<button type="submit" class="btn btn-primary px-5 py-3"><i class="fas fa-paper-plane me-2"></i>Submit Comment</button>
+								<!-- SUBMIT BUTTON -->
+								<div class="col-md-12 text-center">
+									<button type="submit" class="btn btn-primary px-5">
+
+										<i class="fas fa-paper-plane"></i> Submit Comment
+
+									</button>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</main>
+	</div>
 </body>
+
 </html>

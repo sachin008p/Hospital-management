@@ -18,6 +18,7 @@
 
     <!-- Package Scan -->
     <context:component-scan base-package="hospital"/>
+    <context:property-placeholder/>
 
     <!-- MVC Config -->
     <mvc:annotation-driven />
@@ -37,8 +38,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/hospital_management"/>
-        <property name="username" value="postgres"/>
-        <property name="password" value="5432"/>
+        <property name="username" value="${DB_USERNAME:postgres}"/>
+        <property name="password" value="${DB_PASSWORD}"/>
     </bean>
 
     <!-- SessionFactory -->
@@ -48,10 +49,10 @@
         <!-- Entities -->
        <property name="annotatedClasses">
     <list>
-        <value>hospital.entity.Specialist</value>
-        <value>hospital.entity.Doctor</value>
-        <value>hospital.entity.User</value> 
-        <value>hospital.entity.Appointment</value> 
+        <value>hospital.model.Specialist</value>
+        <value>hospital.model.Doctor</value>
+        <value>hospital.model.User</value> 
+        <value>hospital.model.Appointment</value> 
           
     </list>
 </property>

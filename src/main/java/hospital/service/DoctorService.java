@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hospital.dao.DoctorDao;
-import hospital.dao.SpecialistDao;
-import hospital.entity.Doctor;
-import hospital.entity.Specialist;
+import hospital.repository.DoctorDao;
+import hospital.repository.SpecialistDao;
+import hospital.model.Doctor;
+import hospital.model.Specialist;
 
 @Service
 @Transactional

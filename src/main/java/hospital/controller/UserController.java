@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import hospital.entity.Appointment;
-import hospital.entity.Doctor;
-import hospital.entity.User;
+import hospital.model.Appointment;
+import hospital.model.Doctor;
+import hospital.model.User;
 import hospital.service.AppointmentService;
 import hospital.service.DoctorService;
 import hospital.service.UserService;
@@ -29,15 +29,15 @@ public class UserController {
     private AppointmentService appointmentService;
 
     // 🔹 Open Login Page
-    @RequestMapping("/user_login")
+    @RequestMapping("/user/login")
     public String userLogin() {
-        return "user_login";
+        return "user/login";
     }
 
     // 🔹 Open Signup Page
-    @RequestMapping("/signup")
+    @RequestMapping("/user/signup")
     public String signup() {
-        return "signup";
+        return "user/signup";
     }
 
     // 🔹 Register User
@@ -60,7 +60,7 @@ public class UserController {
             session.setAttribute("errorMsg", "Something Went Wrong...");
         }
 
-        return "redirect:/signup";
+        return "redirect:/user/signup";
     }
 
     // 🔹 Login User
@@ -75,11 +75,11 @@ public class UserController {
             session.setAttribute("userObj", u);
 
             // ✅ FIXED REDIRECT
-            return "redirect:/user_appointment";
+            return "redirect:/user/appointment";
 
         } else {
             session.setAttribute("errorMsg", "Invalid Email & Password");
-            return "redirect:/user_login";
+            return "redirect:/user/login";
         }
     }
 
@@ -90,21 +90,21 @@ public class UserController {
         // ✅ BEST PRACTICE
         session.invalidate();
 
-        return "redirect:/user_login";
+        return "redirect:/user/login";
     }
 
     // 🔹 User Appointment Page
-    @RequestMapping("/user_appointment")
+    @RequestMapping("/user/appointment")
     public String userAppointment(HttpSession session, Model m) {
 
         if (session.getAttribute("userObj") == null) {
-            return "redirect:/user_login";
+            return "redirect:/user/login";
         }
 
         List<Doctor> list = doctorService.getAllDoctor();
         m.addAttribute("doctorList", list);
 
-        return "user_appointment";
+        return "user/appointment";
     }
     @PostMapping("/appAppointment")
     public String addAppointment(@ModelAttribute Appointment ap,
@@ -113,6 +113,10 @@ public class UserController {
                                  HttpSession session) {
 
         User user = (User) session.getAttribute("userObj");
+
+        if (user == null) {
+            return "redirect:/user/login";
+        }
 
         ap.setUserId(user.getId());
         ap.setAppointDate(appointDate);
@@ -127,16 +131,16 @@ public class UserController {
             session.setAttribute("errorMsg", "Something went Wrong");
         }
 
-        return "redirect:/user_appointment";
+        return "redirect:/user/appointment";
     }
     
-    @GetMapping("/view_appointment")
+    @GetMapping("/user/view_appointment")
     public String viewAppointment(HttpSession session, Model m) {
 
         User user = (User) session.getAttribute("userObj");
 
         if (user == null) {
-            return "redirect:/user_login";
+            return "redirect:/user/login";
         }
 
         List<Appointment> list =
@@ -144,11 +148,11 @@ public class UserController {
 
         m.addAttribute("appointmentList", list);
 
-        return "view_appointment";  
+        return "user/view_appointment";  
     }
-    @RequestMapping("/change_password")
+    @RequestMapping("/user/change_password")
     public String changePassword() {
-        return "change_password";
+        return "user/change_password";
     }
 
     @PostMapping("/userChangePassword")   // 🔥 IMPORTANT
@@ -165,6 +169,6 @@ public class UserController {
             session.setAttribute("errorMsg", "Old Password Incorrect");
         }
 
-        return "redirect:/change_password";
+        return "redirect:/user/change_password";
     }
 }

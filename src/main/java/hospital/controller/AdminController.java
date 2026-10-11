@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 
-import hospital.entity.Doctor;
-import hospital.entity.Specialist;
-import hospital.entity.User;
+import hospital.model.Doctor;
+import hospital.model.Specialist;
+import hospital.model.User;
 import hospital.service.AppointmentService;
 import hospital.service.DoctorService;
 import hospital.service.SpecialistService;
@@ -36,9 +36,9 @@ public class AdminController {
 	private AppointmentService appointmentService;
 	
 	// 🔹 Login page open
-	@RequestMapping("/admin_login")
+	@RequestMapping("/admin/login")
 	public String admin() {
-		return "admin_login";
+		return "admin/login";
 	}
 
 	// 🔹 Login check
@@ -46,12 +46,15 @@ public class AdminController {
 	public String adminLogin(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpSession session) {
 
-		if (email.equals("admin@gmail.com") && password.equals("admin")) {
+		String configuredEmail = System.getenv("HOSPITAL_ADMIN_EMAIL");
+		String configuredPassword = System.getenv("HOSPITAL_ADMIN_PASSWORD");
+		if (configuredEmail != null && configuredPassword != null
+				&& configuredEmail.equals(email) && configuredPassword.equals(password)) {
 			session.setAttribute("adminObj", new User());
 			return "redirect:/admin/index";
 		} else {
 			session.setAttribute("errorMsg", "Invalid email & password");
-			return "redirect:/admin_login";
+			return "redirect:/admin/login";
 		}
 	}
 
@@ -60,7 +63,7 @@ public class AdminController {
 	public String adminDashboard(HttpSession session,Model m) {
 
 		if (session.getAttribute("adminObj") == null) {
-			return "redirect:/admin_login";
+			return "redirect:/admin/login";
 		}
 		
 		int doctorCount = doctorService.countDoctor();
@@ -79,6 +82,7 @@ public class AdminController {
 	// 🔹 Add Specialist
 	@RequestMapping(value = "/addSpecialist", method = RequestMethod.POST)
 	public String addSpecialist(@RequestParam("specName") String specName, HttpSession session) {
+		if (!isAdmin(session)) return "redirect:/admin/login";
 
 		System.out.println(specName);
 
@@ -97,7 +101,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/add_doctor")
-	public String addDoctor(Model m) {
+	public String addDoctor(Model m, HttpSession session) {
+		if (!isAdmin(session)) return "redirect:/admin/login";
 
 	    m.addAttribute("specList", specialistService.getSpecialists());
 
@@ -106,13 +111,14 @@ public class AdminController {
 	
 	@RequestMapping(value = "/addDoctor",method = RequestMethod.POST)
 	public String addDoctor(@ModelAttribute Doctor d, HttpSession session) {
+		if (!isAdmin(session)) return "redirect:/admin/login";
 		
 		boolean f  = doctorService.addDoctor(d);
 		
 		if(f) {
 			session.setAttribute("succMsg", "Doctor Added Successfuly");
 		}else {
-			session.setAttribute("erroMsg", "Something Went Wrong");
+			session.setAttribute("errorMsg", "Something Went Wrong");
 		}
 		return "redirect:/admin/add_doctor";		
 	}
@@ -121,7 +127,7 @@ public class AdminController {
 	public String viewDoctor(HttpSession session, Model m) {
 		
 		if (session.getAttribute("adminObj") == null) {
-			return "redirect:/admin_login";
+			return "redirect:/admin/login";
 		}
 		
 		m.addAttribute("doctorList",doctorService.getAllDoctor());
@@ -134,7 +140,7 @@ public class AdminController {
 	public String editDoctor(@RequestParam("id") int id,Model m,HttpSession session) {
 		
 		if(session.getAttribute("adminObj")== null) {
-			return "redirect:/admin_login";
+			return "redirect:/admin/login";
 		}
 		
 		m.addAttribute("doctor",doctorService.getDoctorById(id));
@@ -145,6 +151,7 @@ public class AdminController {
 	
 	@RequestMapping("/updateDoctor")
 	public String updateDoctor(@ModelAttribute Doctor d, HttpSession session) {
+		if (!isAdmin(session)) return "redirect:/admin/login";
 		boolean f = doctorService.updateDoctor(d);
 		
 		if(f) {
@@ -158,6 +165,7 @@ public class AdminController {
 	
 	@RequestMapping("/delete_doctor")
 	public String daleteDoctor(@RequestParam("id") int id, HttpSession session) {
+		if (!isAdmin(session)) return "redirect:/admin/login";
 		boolean f = doctorService.deleteDoctor(id);
 		
 		if(f) {
@@ -174,7 +182,7 @@ public class AdminController {
 	public String patient(HttpSession session,Model m) {
 		
 		if(session.getAttribute("adminObj") == null) {
-			return "redirect:/admin_login";
+			return "redirect:/admin/login";
 		}
 		m.addAttribute("appointmentList",appointmentService.getAllAppointment());
 		return "admin/patient";
@@ -187,8 +195,12 @@ public class AdminController {
 	    	session.removeAttribute("adminObj");
 	    	session.setAttribute("succMsg", "Admin Logout Successfully");
 	    	
-	    	return "redirect:/admin_login";
+	    	return "redirect:/admin/login";
 	    }
+
+	private boolean isAdmin(HttpSession session) {
+		return session.getAttribute("adminObj") != null;
+	}
 	
 	
 	}
