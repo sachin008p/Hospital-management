@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hospital.repository.UserDao;
-import hospital.model.User;
+import hospital.dao.UserDao;
+import hospital.entity.User;
 
 @Service
 public class UserService {

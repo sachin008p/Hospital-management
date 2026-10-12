@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1" />
 <title>Edit Profile</title>
 
-<%@include file="../common/allcss.jsp"%>
+<%@include file="../component/allcss.jsp"%>
 
 <style>
 .paint-card {

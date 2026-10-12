@@ -49,10 +49,10 @@
         <!-- Entities -->
        <property name="annotatedClasses">
     <list>
-        <value>hospital.model.Specialist</value>
-        <value>hospital.model.Doctor</value>
-        <value>hospital.model.User</value> 
-        <value>hospital.model.Appointment</value> 
+        <value>hospital.entity.Specialist</value>
+        <value>hospital.entity.Doctor</value>
+        <value>hospital.entity.User</value> 
+        <value>hospital.entity.Appointment</value> 
           
     </list>
 </property>

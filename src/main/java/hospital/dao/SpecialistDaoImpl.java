@@ -1,4 +1,4 @@
-package hospital.repository;
+package hospital.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import hospital.model.Specialist;
+import hospital.entity.Specialist;
 
 @Repository
 public class SpecialistDaoImpl implements SpecialistDao {

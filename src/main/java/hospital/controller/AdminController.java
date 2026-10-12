@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 
-import hospital.model.Doctor;
-import hospital.model.Specialist;
-import hospital.model.User;
+import hospital.entity.Doctor;
+import hospital.entity.Specialist;
+import hospital.entity.User;
 import hospital.service.AppointmentService;
 import hospital.service.DoctorService;
 import hospital.service.SpecialistService;
@@ -38,7 +38,7 @@ public class AdminController {
 	// 🔹 Login page open
 	@RequestMapping("/admin/login")
 	public String admin() {
-		return "admin/login";
+		return "admin_login";
 	}
 
 	// 🔹 Login check

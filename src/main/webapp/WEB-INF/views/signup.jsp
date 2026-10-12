@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
 
-<%@include file="../common/allcss.jsp" %>
+<%@include file="component/allcss.jsp" %>
 
 <style type="text/css">
 .paint-card {
@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-  <%@include file="../common/navbar.jsp" %>
+  <%@include file="component/navbar.jsp" %>
  
     <div class="container p-5">
     <div class="row">

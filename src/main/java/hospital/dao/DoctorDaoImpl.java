@@ -1,4 +1,4 @@
-package hospital.repository;
+package hospital.dao;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import hospital.model.Doctor;
-import hospital.model.Specialist;
+import hospital.entity.Doctor;
+import hospital.entity.Specialist;
 
 @Repository
 public class DoctorDaoImpl implements DoctorDao {

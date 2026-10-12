@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Patient Comment</title>
 
-<%@ include file="../common/allcss.jsp"%>
+<%@ include file="../component/allcss.jsp"%>
 </head>
 <body class="bg-light">
 	<!-- SESSION CHECK -->

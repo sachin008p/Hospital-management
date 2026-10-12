@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import hospital.model.Appointment;
-import hospital.model.Doctor;
-import hospital.model.User;
+import hospital.entity.Appointment;
+import hospital.entity.Doctor;
+import hospital.entity.User;
 import hospital.service.AppointmentService;
 import hospital.service.DoctorService;
 import hospital.service.UserService;
@@ -31,13 +31,13 @@ public class UserController {
     // 🔹 Open Login Page
     @RequestMapping("/user/login")
     public String userLogin() {
-        return "user/login";
+        return "user_login";
     }
 
     // 🔹 Open Signup Page
     @RequestMapping("/user/signup")
     public String signup() {
-        return "user/signup";
+        return "signup";
     }
 
     // 🔹 Register User
@@ -104,7 +104,7 @@ public class UserController {
         List<Doctor> list = doctorService.getAllDoctor();
         m.addAttribute("doctorList", list);
 
-        return "user/appointment";
+        return "user_appointment";
     }
     @PostMapping("/appAppointment")
     public String addAppointment(@ModelAttribute Appointment ap,
@@ -148,11 +148,11 @@ public class UserController {
 
         m.addAttribute("appointmentList", list);
 
-        return "user/view_appointment";  
+        return "view_appointment";  
     }
     @RequestMapping("/user/change_password")
     public String changePassword() {
-        return "user/change_password";
+        return "change_password";
     }
 
     @PostMapping("/userChangePassword")   // 🔥 IMPORTANT

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Patient Appointment</title>
 
-<%@ include file="../common/allcss.jsp"%>
+<%@ include file="../component/allcss.jsp"%>
 
 </head>
 

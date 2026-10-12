@@ -1,7 +1,7 @@
-package hospital.repository;
+package hospital.dao;
 
 import java.util.List;
-import hospital.model.Specialist;
+import hospital.entity.Specialist;
 
 public interface SpecialistDao {
 

@@ -1,7 +1,7 @@
-package hospital.repository;
+package hospital.dao;
 
 import java.util.List;
-import hospital.model.Appointment;
+import hospital.entity.Appointment;
 
 public interface AppointmentDao {
 

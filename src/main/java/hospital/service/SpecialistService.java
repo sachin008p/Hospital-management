@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import hospital.repository.SpecialistDao;
-import hospital.model.Specialist;
+import hospital.dao.SpecialistDao;
+import hospital.entity.Specialist;
 
 @Service
 @Transactional

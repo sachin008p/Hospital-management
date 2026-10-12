@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit Doctor</title>
-<%@include file="../common/allcss.jsp"%>
+<%@include file="../component/allcss.jsp"%>
 
 <style type="text/css">
 .paint-card {
@@ -92,6 +92,6 @@
 		</div>
 	</div>
 
-	<%@include file="../common/footer.jsp"%>
+	<%@include file="../component/footer.jsp"%>
 </body>
 </html>

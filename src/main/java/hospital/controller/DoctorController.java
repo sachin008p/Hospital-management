@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import hospital.model.Appointment;
-import hospital.model.Doctor;
-import hospital.model.Specialist;
+import hospital.entity.Appointment;
+import hospital.entity.Doctor;
+import hospital.entity.Specialist;
 import hospital.service.AppointmentService;
 import hospital.service.DoctorService;
 
@@ -31,7 +31,7 @@ public class DoctorController {
     // ================= Doctor Login Page =================
     @GetMapping("/login")
     public String loginPage() {
-        return "doctor/login";
+        return "doctor_login";
     }
 
     // ================= Doctor Login Logic =================

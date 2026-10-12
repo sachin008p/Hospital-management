@@ -14,7 +14,7 @@ response.setDateHeader("Expires", 0);
 <meta charset="ISO-8859-1">
 <title>User Appointment</title>
 
-<%@include file="../common/allcss.jsp"%>
+<%@include file="component/allcss.jsp"%>
 
 <style>
 .paint-card {
@@ -34,7 +34,7 @@ response.setDateHeader("Expires", 0);
 </head>
 <body>
 
-  <%@include file="../common/navbar.jsp"%>
+  <%@include file="component/navbar.jsp"%>
 
   <div class="container-fluid backImg p-5">
     <p class="text-center fs-2 text-white"></p>
@@ -157,7 +157,7 @@ response.setDateHeader("Expires", 0);
     </div>
   </div>
 
-  <%@include file="../common/footer.jsp"%>
+  <%@include file="component/footer.jsp"%>
 
 </body>
 </html>

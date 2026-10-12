@@ -1,6 +1,6 @@
-package hospital.repository;
+package hospital.dao;
 
-import hospital.model.User;
+import hospital.entity.User;
 
 public interface UserDao {
 	

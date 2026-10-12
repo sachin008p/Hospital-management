@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add Doctor</title>
-<%@include file="../common/allcss.jsp"%>
+<%@include file="../component/allcss.jsp"%>
 
 <style type="text/css">
 .paint-card {

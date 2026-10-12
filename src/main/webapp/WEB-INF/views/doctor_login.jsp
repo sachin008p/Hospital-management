@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User Login Page</title>
-<%@include file="../common/allcss.jsp"%>
+<title>Doctor Login Page</title>
+<%@include file="component/allcss.jsp"%>
 
 <style type="text/css">
 .paint-card {
@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-	<%@include file="../common/navbar.jsp"%>
+	<%@include file="component/navbar.jsp"%>
 
 
 	<div class="container p-5">
@@ -25,19 +25,19 @@
 			<div class="col-md-4 offset-md-4">
 				<div class="card paint-card">
 					<div class="card-body">
-						<p class="fs-4 text-center fw-bold">User Login</p>
+						<p class="fs-4 text-center fw-bold">Doctor Login</p>
 
 						<c:if test="${not empty sucMsg}">
-    <p class="text-center text-success">${sucMsg}</p>
-    <c:remove var="sucMsg" scope="session"/>
-</c:if>
+							<p class="text-center text-success">${sucMsg}</p>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
 
 						<c:if test="${not empty errorMsg  }">
 							<p class="text-center text-danger fs-5">${errorMsg}</p>
 							<c:remove var="errorMsg" scope="session" />
 						</c:if>
 
-						<form action="userLogin" method="post">
+						<form action="${pageContext.request.contextPath}/doctor/login" method="post">
 							<div class="mb-3">
 								<label class="form-label">Email address</label> <input required
 									name="email" type="email" class="form-control">
@@ -49,9 +49,7 @@
 							</div>
 							<button type="submit" class="btn bg-primary text-white col-md-12">Login</button>
 						</form>
-						<br> Don't Have an Account? <a
-							href="${pageContext.request.contextPath}/signup"
-							class="text-decoration-none"> create one </a>
+						
 					</div>
 				</div>
 			</div>

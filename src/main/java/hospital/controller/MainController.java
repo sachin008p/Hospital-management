@@ -10,6 +10,6 @@ public class MainController {
 	@RequestMapping("/")
 	public String home() {
 	     System.out.println("in main controller");
-	     return "user/index";
+	     return "index";
 }
 }

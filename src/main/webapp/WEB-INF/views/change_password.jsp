@@ -8,7 +8,7 @@ uri="http://java.sun.com/jsp/jstl/core"%> <%@ page isELIgnored="false"%>
     <meta charset="ISO-8859-1" />
     <title>Change Password</title>
 
-    <%@include file="../common/allcss.jsp"%>
+    <%@include file="component/allcss.jsp"%>
 
     <style>
       .paint-card {
@@ -18,7 +18,7 @@ uri="http://java.sun.com/jsp/jstl/core"%> <%@ page isELIgnored="false"%>
   </head>
 
   <body>
-    <%@include file="../common/navbar.jsp"%>
+    <%@include file="component/navbar.jsp"%>
 
     <!-- if user not logged in -->
     <c:if test="${empty sessionScope.userObj}">
@@ -84,7 +84,7 @@ uri="http://java.sun.com/jsp/jstl/core"%> <%@ page isELIgnored="false"%>
       </div>
     </div>
 
-    <%@include file="../common/footer.jsp"%>
+    <%@include file="component/footer.jsp"%>
   </body>
 </html>
 

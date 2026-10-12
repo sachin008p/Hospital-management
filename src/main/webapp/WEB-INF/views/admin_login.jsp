@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Admin Login</title>
 
-<%@ include file="../common/allcss.jsp" %>
+<%@ include file="component/allcss.jsp" %>
 
 <style>
 .paint-card {
@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<%@ include file="../common/navbar.jsp" %>
+<%@ include file="component/navbar.jsp" %>
 
 <div class="container p-5">
   <div class="row">
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="component/footer.jsp" %>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
 
-<%@ include file="../common/allcss.jsp"%>
+<%@ include file="../component/allcss.jsp"%>
 
 <style>
 .paint-card {
@@ -114,7 +114,7 @@
 		</div>
 	</div>
 
-	<%@ include file="../common/footer.jsp"%>
+	<%@ include file="../component/footer.jsp"%>
 
 </body>
 </html>
