@@ -13,4 +13,5 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY --from=build /app/target/project-lecture.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
-CMD ["catalina.sh", "run"]
+# Render provides the listening port through PORT. Tomcat defaults to 8080 locally.
+CMD ["sh", "-c", "PORT=${PORT:-8080}; sed -i \"s/port=\\\"8080\\\"/port=\\\"$PORT\\\"/\" /usr/local/tomcat/conf/server.xml; exec catalina.sh run"]
