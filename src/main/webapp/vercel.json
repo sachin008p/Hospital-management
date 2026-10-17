@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "https://YOUR-APP.onrender.com/$1"
+      "destination": "https://hospital-management-owe7.onrender.com/$1"
     }
   ]
 }
